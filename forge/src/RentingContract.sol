@@ -2,11 +2,15 @@
 pragma solidity ^0.8.13;
 
 contract RentingContract {
+    struct PropertyInfo {
+        string name;
+        string description;
+        string location;
+    }
+
     struct Listing {
         address owner;
-        string propertyName;
-        string propertyDescription;
-        string propertyAddress;
+        PropertyInfo propertyInfo;
         string[] images;
         uint128 price;
         address[] renters;
@@ -35,25 +39,21 @@ contract RentingContract {
     );
 
     function addListing(
-        string memory _propertyName,
-        string memory _propertyDescription,
-        string memory _propertyAddress,
+        PropertyInfo memory _propertyInfo,
         string[] memory _images,
         uint128 _price
     ) public returns (uint256 id) {
         Listing storage newListing = listings[listings.length];
         newListing.owner = msg.sender;
-        newListing.propertyName = _propertyName;
-        newListing.propertyDescription = _propertyDescription;
-        newListing.propertyAddress = _propertyAddress;
+        newListing.propertyInfo = _propertyInfo;
         newListing.images = _images;
         newListing.price = _price;
 
         emit LogListingAdded(
             msg.sender,
-            _propertyName,
-            _propertyDescription,
-            _propertyAddress,
+            _propertyInfo.name,
+            _propertyInfo.description,
+            _propertyInfo.location,
             _images,
             _price
         );
