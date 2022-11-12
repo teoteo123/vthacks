@@ -119,6 +119,26 @@ contract RentingContract {
         uint256 end
     );
 
+    function checkApplication(
+        Listing storage _listing,
+        uint256 _start,
+        uint256 _end
+    ) private {
+        uint256 numApplications = _listing.pendingApplications.length;
+        for (uint256 i = 0; i < numApplications; i++) {
+            uint256 _currentStart = _listing.pendingApplications[i].start;
+            uint256 _currentEnd = _listing.pendingApplications[i].end;
+            for (uint256 day = _currentStart; day <= _currentEnd; day++) {
+                if (_start <= day && day <= _end) {
+                    delete _listing.pendingApplications[i];
+                    i--;
+                    numApplications--;
+                    break;
+                }
+            }
+        }
+    }
+
     function approveApplication(uint32 _id, uint32 _applicationId)
         public
         listingExists(_id)
@@ -142,20 +162,7 @@ contract RentingContract {
 
         delete listings[_id].pendingApplications[_applicationId];
 
-        // look for all applications that cannot be approved anymore and delete them
-        uint256 numApplications = listings[_id].pendingApplications.length;
-        for (uint256 i = 0; i < numApplications; i++) {
-            uint256 _currentStart = listings[_id].pendingApplications[i].start;
-            uint256 _currentEnd = listings[_id].pendingApplications[i].end;
-            for (uint256 day = _currentStart; day <= _currentEnd; day++) {
-                if (_start <= day && day <= _end) {
-                    delete listings[_id].pendingApplications[i];
-                    i--;
-                    numApplications--;
-                    break;
-                }
-            }
-        }
+        checkApplication(listings[_id], _start, _end);
     }
 
     function getListings() public view returns (Listing[] memory) {
