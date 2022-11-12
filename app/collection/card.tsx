@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Datepicker from "tailwind-datepicker-react";
 import { useState } from 'react';
+import Carousel from './Carousel';
 
 export default function Card(props: any) {
   const { address, url } = props
@@ -47,6 +48,7 @@ export default function Card(props: any) {
     <div className='flex flex-col items-center space-y-10 w-[579px] h-[982px] bg-[#f4f8fa]'>
       <div id='image-address'>
         <p className='font-mono'>{address || '6969 Cool Street'}</p>
+        <Carousel resources={[{title: 'img', imageUrl: 'https://www.boredpanda.com/blog/wp-content/uploads/2021/09/fb_image_61373489ee255.png'}]}/>
         <Image
           src={
             'https://www.boredpanda.com/blog/wp-content/uploads/2021/09/fb_image_61373489ee255.png'

@@ -30,7 +30,7 @@
     "**/*.tsx",
     "app/collection/page.tsx",
     ".next/types/**/*.ts"
-  ],
+, "app/collection/Carousel.jsx"  ],
   "exclude": [
     "node_modules"
   ]
