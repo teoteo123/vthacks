@@ -9,13 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/roboto": "^4.5.8",
     "@hashgraph/sdk": "^2.18.5",
+    "@mui/material": "^5.10.13",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
     "dotenv": "^16.0.3",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.3",
+    "flowbite-datepicker": "^1.2.2",
     "next": "13.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",

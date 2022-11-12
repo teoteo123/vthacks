@@ -3,12 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: [
-      'google.com'
-    ]
+    domains: ['www.boredpanda.com'],
   },
   experimental: {
-    appDir: true
+    appDir: true,
   },
 }
 

@@ -28,7 +28,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "app/collection/page.jsx",
+    "app/collection/page.tsx",
     ".next/types/**/*.ts"
   ],
   "exclude": [

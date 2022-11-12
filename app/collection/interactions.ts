@@ -9,8 +9,6 @@ import {
   TransferTransaction,
 } from '@hashgraph/sdk'
 
-require('dotenv').config()
-
 const accountId = process.env.MY_ACCOUNT_ID
 const privateKey = process.env.MY_PRIVATE_KEY
 
@@ -24,4 +22,8 @@ async function connnect() {
   const txn = await new Transaction()
 }
 
-export {}
+async function getListings(): Promise<string[]> {
+  return ['', '']
+}
+
+export { getListings }
