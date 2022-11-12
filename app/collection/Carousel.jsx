@@ -105,10 +105,10 @@ const Carousel = (props) => {
             return (
               <div
                 key={index}
-                className="carousel-item text-center relative w-64 h-64 snap-start"
+                className="carousel-item text-center relative w-[542px] h-64 snap-start"
               >
                 <Image
-                  width='1084'
+                  width='542'
                   height='339'
                   src={resource.imageUrl || ''}
                   alt={resource.title}

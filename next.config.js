@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['www.boredpanda.com'],
+    domains: ['www.boredpanda.com', 'www.rd.com'],
   },
   experimental: {
     appDir: true,
