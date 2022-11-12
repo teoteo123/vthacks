@@ -1,17 +1,12 @@
-"use client"
+'use client'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { use } from 'react'
+import { getListings } from './interactions'
 
 export default function Collection() {
-	const [nfts, setNfts] = useState([])
-	useEffect(() => {
-		let n = []
-		for (let i = 1; i < 47; ++i) {
-			n.push({id: i, uri: `${process.env.NEXT_PUBLIC_IMAGE_SERVER_URL}/${i}.jpeg`})
-		}
-		setNfts(() => n)
-	},[])
-	return (
+  const nftURIs: string[] = use(getListings)
+
+  return (
     <div className='flex flex-col justify-center items-center mb-4'>
       <div className='py-6 lg:px-8'>
         <h1 className='text-3xl font-bold text-gray-900'>The Collection</h1>
