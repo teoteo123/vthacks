@@ -47,6 +47,7 @@ contract RentingContract {
         newListing.owner = msg.sender;
         newListing.propertyInfo = _propertyInfo;
         newListing.price = _price;
+        newListing.images = _images;
 
         emit LogListingAdded(
             msg.sender,
@@ -95,7 +96,7 @@ contract RentingContract {
         uint256 _id,
         uint256 _start,
         uint256 _end
-    ) public listingExists(_id) notOwnerApplying(_id) {
+    ) public listingExists(_id) {
         listings[_id].pendingApplications.push(
             Application(msg.sender, _start, _end)
         );
@@ -118,24 +119,20 @@ contract RentingContract {
         uint256 end
     );
 
-    function checkApplication(
-        Listing storage _listing,
-        uint256 _start,
-        uint256 _end
-    ) private {
-        uint256 numApplications = _listing.pendingApplications.length;
-        for (uint256 i = 0; i < numApplications; i++) {
-            uint256 _currentStart = _listing.pendingApplications[i].start;
-            uint256 _currentEnd = _listing.pendingApplications[i].end;
-            for (uint256 day = _currentStart; day <= _currentEnd; day++) {
-                if (_start <= day && day <= _end) {
-                    delete _listing.pendingApplications[i];
-                    i--;
-                    numApplications--;
-                    break;
-                }
-            }
+    function remove(uint256 _index, uint256 _id) private {
+        require(
+            _index < listings[_id].pendingApplications.length,
+            "Out of bounds"
+        );
+        for (
+            uint256 i = _index;
+            i < listings[_id].pendingApplications.length - 1;
+            i++
+        ) {
+            listings[_id].pendingApplications[i] = listings[_id]
+                .pendingApplications[i + 1];
         }
+        listings[_id].pendingApplications.pop();
     }
 
     function approveApplication(uint32 _id, uint32 _applicationId)
@@ -159,9 +156,7 @@ contract RentingContract {
 
         emit LogApplicationApproved(_renter, _id, _start, _end);
 
-        delete listings[_id].pendingApplications[_applicationId];
-
-        checkApplication(listings[_id], _start, _end);
+        remove(_applicationId, _id);
     }
 
     function getListings() public view returns (Listing[] memory) {
