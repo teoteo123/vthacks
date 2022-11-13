@@ -35,17 +35,26 @@ export default function OwnerDash() {
 
   return (
     <>
-      <div className='flex flex-row'>
+
+      <div className='flex flex-row grid-cols-6 gap-6 col-span-6 sm:col-span-3
+      bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900
+      text-white min-h-[3000px] items-align'
+      >
         <div
           id='left'
-          className='flex flex-col items-center space-y-2 w-1/2 border-r-[1px] border-r-[#c4c4c4] p-4'
+          className='flex flex-col items-center 
+          space-y-2 w-1/2 border-r-[1px] 
+          border-r-[#c4c4c4] p-4'
         >
           <p className='text-3xl mb-10'>Add Listing</p>
           <div>
             <label>Name</label>
             <input
               type='text'
-              className='shadow-sm border-gray-300 rounded-lg m-2 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400'
+              className='shadow-sm border-gray-300 
+              rounded-lg 
+              m-2 focus:ring-2 focus:ring-indigo-200
+               focus:border-indigo-400'
               placeholder='Enter some text...'
               ref={nameRef}
             ></input>
@@ -54,7 +63,10 @@ export default function OwnerDash() {
             <label>Description</label>
             <input
               type='text'
-              className='shadow-sm border-gray-300 rounded-lg m-2 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400'
+              className='shadow-sm border-gray-300 
+                rounded-lg m-2 focus:ring-2
+                 focus:ring-indigo-200
+                 focus:border-indigo-400'
               placeholder='Enter some text...'
               ref={descriptionRef as any}
             ></input>
@@ -63,7 +75,10 @@ export default function OwnerDash() {
             <label>Location</label>
             <input
               type='text'
-              className='shadow-sm border-gray-300 rounded-lg m-2 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400'
+              className='shadow-sm border-gray-300 
+                rounded-lg m-2 focus:ring-2
+                focus:ring-indigo-200
+                focus:border-indigo-400'
               placeholder='Enter some text...'
               ref={locationRef as any}
             ></input>
@@ -72,7 +87,12 @@ export default function OwnerDash() {
             <label>Image 1</label>
             <input
               type='text'
-              className='shadow-sm border-gray-300 rounded-lg m-2 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400'
+              className='shadow-sm
+                 border-gray-300 
+                rounded-lg m-2 
+                focus:ring-2 
+                focus:ring-indigo-200
+                focus:border-indigo-400'
               placeholder='Enter some text...'
               ref={image1Ref as any}
             ></input>
@@ -81,7 +101,12 @@ export default function OwnerDash() {
             <label>Image 2</label>
             <input
               type='text'
-              className='shadow-sm border-gray-300 rounded-lg m-2 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400'
+              className='shadow-sm
+                border-gray-300 
+                rounded-lg m-2 
+                focus:ring-2 
+                focus:ring-indigo-200 
+                focus:border-indigo-400'
               placeholder='Enter some text...'
               ref={image2Ref as any}
             ></input>
@@ -106,7 +131,7 @@ export default function OwnerDash() {
           </div>
           <button
             onClick={handleSubmit}
-            className='w-1/2 h-10 bg-[rgb(49,194,95)] rounded-md mt-10'
+            className='w-1/2 h-10 rounded-md mt-10 bg-fuchsia-500'
           >
             Add
           </button>
