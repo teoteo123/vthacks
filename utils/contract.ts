@@ -28,7 +28,7 @@ const wallet = new hethers.Wallet(
 const iface = new hethers.utils.Interface(data.abi)
 // console.log(iface.format(hethers.utils.FormatTypes.full/**/));
 export const contract = new hethers.Contract(
-  '0x0000000000000000000000000000000002e9b861',
+  '0x0000000000000000000000000000000002e9bb18',
   iface.format(hethers.utils.FormatTypes.full),
   wallet
 )
