@@ -1,34 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# HederaHaus
 
-## Getting Started
+## Inspiration
 
-First, run the development server:
+Inspired by the Hashgraph model of Hedera to interact as a application to store decentralized data such as homes available on a marketplace, similar to Redfin.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## What it does
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Currently, we allow the owners to post listings of their properties for rent. Renters can then apply for the property, specifying the start and end dates, and the owner can accept the application. The listings (including applications) are stored in a smart contract on the Hedera network. The owner can view the applications and accept them. The renter can find the listings and view them.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## How we built it
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+The smart contract was written in [Solidity](https://soliditylang.org) using the [Foundry toolkit](https://getfoundry.sh) and deployed to the [Hedera network](https://hedera.com). [React](https://reactjs.org)/[Next.js](https://nextjs.org) and [Tailwind CSS](https://tailwindcss.com) were used to develop the front-end.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Challenges we ran into
 
-## Learn More
+- While having some Solidity experience, we had to learn how to interact with the Hedera network, deploy a smart contract and interact with it
+- Only a portion of our team had experience with React and web development in general, so we had to learn a lot of new things
+- Setting realistic goals was definitely a challenge: we had a lot of ideas, but we had to prioritize and focus on the basic functionality first
 
-To learn more about Next.js, take a look at the following resources:
+## Accomplishments that we're proud of
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Ultimately deploying a smart contract and being able to interact with it from the UI was a huge accomplishment for us.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## What we learned
 
-## Deploy on Vercel
+- New technologies: Solidity, Hedera, Foundry, React, Next.js, Tailwind CSS
+- Working in a team with different skillsets and learning from each other
+- Making plans and setting goals
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## What's next for HederaHaus
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- A more user-friendly UI, displaying the listings and applications in a more intuitive way
+- Rating system for renters and owners
+- Displaying the listings on a map
+- Handling payments through the smart contract
+- Adding more functionality to the smart contract, such as escrow, dispute resolution, etc.
