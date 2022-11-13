@@ -95,7 +95,7 @@ contract RentingContract {
         uint256 _id,
         uint256 _start,
         uint256 _end
-    ) public listingExists(_id) notOwnerApplying(_id) {
+    ) public listingExists(_id) {
         listings[_id].pendingApplications.push(
             Application(msg.sender, _start, _end)
         );
