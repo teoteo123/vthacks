@@ -35,14 +35,26 @@ export default function Card(props: any) {
     defaultDate: new Date('2022-01-01'),
     language: 'en',
   }
+  const [fromShow, setFromShow] = useState<boolean>(false)
+  const [toShow, setToShow] = useState<boolean>(false)
+  const [from, setFrom] = useState<Date>()
+  const [to, setTo] = useState<Date>()
+  const handleFromChange = (selectedDate: Date) => {
+    setFrom(selectedDate)
+  }
+  const handleToChange = (selectedDate: Date) => {
+    setTo(selectedDate)
+  }
+  const handleFromClose = (state: boolean) => {
+    setFromShow(state)
+  }
+  const handleToClose = (state: boolean) => {
+    setToShow(state)
+  }
 
-  const [show, setShow] = useState<boolean>(false)
-  const handleChange = (selectedDate: Date) => {
-    console.log(selectedDate)
-  }
-  const handleClose = (state: boolean) => {
-    setShow(state)
-  }
+	const handleSubmit = (e: Event) => {
+		applyForListing(from, to)
+	}
 
   return (
     <div className='flex flex-col items-center space-y-10 w-[579px] h-[982px] bg-[#f4f8fa]'>
@@ -67,9 +79,19 @@ export default function Card(props: any) {
         </div>
         <div id='bottom-form' className='space-y-5'>
           <p>from</p>
-          <Datepicker options={options} onChange={handleChange} show={show} setShow={handleClose} />
+          <Datepicker
+            options={options}
+            onChange={handleFromChange}
+            show={fromShow}
+            setShow={handleFromClose}
+          />
           <p>to</p>
-          <Datepicker options={options} onChange={handleChange} show={show} setShow={handleClose} />
+          <Datepicker
+            options={options}
+            onChange={handleToChange}
+            show={toShow}
+            setShow={handleToClose}
+          />
           <button className='w-[542px] h-[74px] border-0 bg-green-500 rounded-md'>Apply</button>
         </div>
       </div>

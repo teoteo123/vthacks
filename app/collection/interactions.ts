@@ -26,4 +26,13 @@ async function getListings(): Promise<string[]> {
   return ['', '']
 }
 
+export function applyForListing(from, to) {
+  const id = 1;
+  return 1;
+}
+
+export function addListing() {
+  
+}
+
 export { getListings }
