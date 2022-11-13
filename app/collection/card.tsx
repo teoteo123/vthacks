@@ -1,12 +1,13 @@
 'use client'
-
 import Image from 'next/image'
 import Datepicker from 'tailwind-datepicker-react'
 import { useState } from 'react'
-import Carousel from './Carousel'
+import { applyForListing } from './interactions'
+import { Listing } from './listing'
 
-export default function Card(props: any) {
-  const { address, url } = props
+export default function Card(props: Listing) {
+  const { propertyInfo, images, price } = props
+  const { name, location, description } = propertyInfo
 
   const options = {
     title: 'Demo Title',
@@ -37,8 +38,8 @@ export default function Card(props: any) {
   }
   const [fromShow, setFromShow] = useState<boolean>(false)
   const [toShow, setToShow] = useState<boolean>(false)
-  const [from, setFrom] = useState<Date>()
-  const [to, setTo] = useState<Date>()
+  const [from, setFrom] = useState<Date>(new Date(1640995200))
+  const [to, setTo] = useState<Date>(new Date(1642321109))
   const handleFromChange = (selectedDate: Date) => {
     setFrom(selectedDate)
   }
@@ -52,30 +53,18 @@ export default function Card(props: any) {
     setToShow(state)
   }
 
-	const handleSubmit = (e: Event) => {
-		applyForListing(from, to)
-	}
+  const handleSubmit = () => {
+    applyForListing(0, from, to)
+  }
 
   return (
-    <div className='flex flex-col items-center space-y-10 w-[579px] h-[982px] bg- text-white'>
-      <div id='image-address' className='space-y-10'>
-        <p className='font-sans'>{address || '123 Jane Street'}</p>
+    <div className='flex flex-col items-center space-y-2 w-[579px] h-[982px] bg- text-white mt-10'>
+      <div id='image-address' className=''>
+        <p className='font-sans text-white'>{description || '123 Jane Street'}</p>
         <div className=' flex flex-row h-[339px] max-w-[542px] overflow-x-scroll overflow-y-clip'>
-          {/* map props.images to images */}
-          <Image
-            className='min-w-[542px]'
-            alt='no load'
-            width='579'
-            height='339'
-            src='https://www.rd.com/wp-content/uploads/2020/12/GettyImages-200157725-002.jpg'
-          />
-          <Image
-            className='min-w-[542px]'
-            alt='no load'
-            width='579'
-            height='339'
-            src='https://www.rd.com/wp-content/uploads/2020/12/GettyImages-200157725-002.jpg'
-          />
+          <Image className='min-w-[542px]' alt='no load' width='579' height='339' src={images[0]} />
+          <Image className='min-w-[542px]' alt='no load' width='579' height='339' src={images[1]} />
+          <Image className='min-w-[542px]' alt='no load' width='579' height='339' src={images[2]} />
         </div>
         <div id='bottom-form' className='space-y-5'>
           <p>from</p>
@@ -92,7 +81,9 @@ export default function Card(props: any) {
             show={toShow}
             setShow={handleToClose}
           />
-          <button className='w-[542px] h-[74px] border-0 bg-sky-500'>Apply</button>
+          <button className='w-[542px] h-[74px] border-0 bg-sky-500' onClick={handleSubmit}>
+            Apply
+          </button>
         </div>
       </div>
     </div>

@@ -1,42 +1,56 @@
-import { Transaction } from '@hashgraph/sdk'
 
-import {
-  Client,
-  PrivateKey,
-  AccountCreateTransaction,
-  AccountBalanceQuery,
-  Hbar,
-  TransferTransaction,
-} from '@hashgraph/sdk'
 
-const accountId = process.env.MY_ACCOUNT_ID
-const privateKey = process.env.MY_PRIVATE_KEY
+import { contract } from '../../utils/contract'
 
-function checkKeys() {
-  if (accountId == null || privateKey == null) {
-    throw new Error('Environment variables accountId and privateKey must be present')
-  }
+/**
+ * 
+ * @returns
+ *    listing info
+ */
+export async function getListingById(id: Number) {
+  const result = await contract.getListingById(id, { gasLimit: 500_000 })
+  return result
 }
 
-async function connnect() {
-  const txn = await new Transaction()
+export async function getApplicationsForListing(id: Number) {
+  const result = await contract.getApplicationsForListing(id, { gasLimit: 500_000 })
+  return result
 }
 
-async function getListings(): Promise<string[]> {
-  return ['', '']
+export async function approveApplication(listingId: Number, appplicationId=0) {
+  const result = await contract.approveApplication(listingId, appplicationId, { gasLimit: 500_000 })
+  console.log(result)
 }
 
-export function applyForListing(from: Date, to: Date) {
-  const id = 1
-  return 1
+export async function getListings() {
+  console.log('wahoo')
+  const resp = await contract.getListings({ gasLimit: 500_000 })
+  console.log(resp)
+  return resp
 }
 
-export function addListing(data: any) {
+export async function applyForListing(id: Number, from: Date, to: Date) {
+  const fromYears = from.getFullYear() - 2022
+  const fromIndex = fromYears * 365 + from.getMonth() * 30 + from.getDate()
+
+  const toYears = to.getFullYear() - 2022
+  const toIndex = toYears * 365 + from.getMonth() * 30 + to.getDate()
+
+  const result = await contract.applyForListing(id, fromIndex, toIndex, { gasLimit: 500_000 })
+
+  console.log(result)
+}
+
+export async function addListing(data: any) {
   const { propertyInfo, images, price } = data
   const { name, location, description } = propertyInfo
 
-  
+  const propertyInfoArr = [name, location, description]
+
+  const result = await contract.functions.addListing(propertyInfoArr, images, price, {
+    gasLimit: 500_000,
+  })
+
+  console.log(result)
 
 }
-
-export { getListings }

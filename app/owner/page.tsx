@@ -1,11 +1,8 @@
 'use client'
+import Card from '../collection/card'
 
-import { Form, Alert, Col, Row, InputGroup, Card } from 'react-bootstrap'
-import Button from 'react-bootstrap/Button'
-
-import { useRef } from 'react'
-import Head from 'next/head'
-import { addListing } from '../collection/interactions'
+import { use, useEffect, useRef, useState } from 'react'
+import { addListing, getListingById, getListings} from '../collection/interactions'
 
 export default function OwnerDash() {
   const nameRef = useRef<HTMLInputElement>(null)
@@ -15,6 +12,24 @@ export default function OwnerDash() {
   const image2Ref = useRef<HTMLInputElement>(null)
   const image3Ref = useRef<HTMLInputElement>(null)
   const priceRef = useRef<HTMLInputElement>(null)
+
+  const idRef = useRef<HTMLInputElement>(null)
+
+  const [listing, setListing] = useState<any>(null)
+  const [id, setId] = useState<number>(0)
+
+  const handleIdChange = () => {
+    getListingById(idRef.current?.value as any).then(l => {
+      setListing(l)
+    })
+  }
+
+
+ // application[] | 
+
+	// const approve = () => {
+	// 	approveApplication()
+	// }
 
   const handleSubmit = () => {
     const data = {
@@ -35,8 +50,8 @@ export default function OwnerDash() {
 
   return (
     <>
-
-      <div className='flex flex-row grid-cols-6 gap-6 col-span-6 sm:col-span-3
+      <div
+        className='flex flex-row grid-cols-6 gap-6 col-span-6 sm:col-span-3
       bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900
       text-white min-h-[3000px] items-align'
       >
@@ -54,7 +69,7 @@ export default function OwnerDash() {
               className='shadow-sm border-gray-300 
               rounded-lg 
               m-2 focus:ring-2 focus:ring-indigo-200
-               focus:border-indigo-400'
+               focus:border-indigo-400 text-black'
               placeholder='Enter some text...'
               ref={nameRef}
             ></input>
@@ -63,10 +78,10 @@ export default function OwnerDash() {
             <label>Description</label>
             <input
               type='text'
-              className='shadow-sm border-gray-300 
+              className='shadow-sm border-gray-300
                 rounded-lg m-2 focus:ring-2
                  focus:ring-indigo-200
-                 focus:border-indigo-400'
+                 focus:border-indigo-400 text-black'
               placeholder='Enter some text...'
               ref={descriptionRef as any}
             ></input>
@@ -78,7 +93,7 @@ export default function OwnerDash() {
               className='shadow-sm border-gray-300 
                 rounded-lg m-2 focus:ring-2
                 focus:ring-indigo-200
-                focus:border-indigo-400'
+                focus:border-indigo-400 text-black'
               placeholder='Enter some text...'
               ref={locationRef as any}
             ></input>
@@ -92,7 +107,7 @@ export default function OwnerDash() {
                 rounded-lg m-2 
                 focus:ring-2 
                 focus:ring-indigo-200
-                focus:border-indigo-400'
+                focus:border-indigo-400 text-black'
               placeholder='Enter some text...'
               ref={image1Ref as any}
             ></input>
@@ -106,7 +121,7 @@ export default function OwnerDash() {
                 rounded-lg m-2 
                 focus:ring-2 
                 focus:ring-indigo-200 
-                focus:border-indigo-400'
+                focus:border-indigo-400 text-black'
               placeholder='Enter some text...'
               ref={image2Ref as any}
             ></input>
@@ -115,7 +130,7 @@ export default function OwnerDash() {
             <label>Image 3</label>
             <input
               type='text'
-              className='shadow-sm border-gray-300 rounded-lg m-2 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400'
+              className='shadow-sm border-gray-300 rounded-lg m-2 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 text-black'
               placeholder='Enter some text...'
               ref={image3Ref as any}
             ></input>
@@ -124,14 +139,14 @@ export default function OwnerDash() {
             <label>Price</label>
             <input
               type='number'
-              className='shadow-sm border-gray-300 rounded-lg m-2 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400'
+              className='shadow-sm border-gray-300 rounded-lg m-2 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 text-black'
               placeholder='Enter some text...'
               ref={priceRef as any}
             ></input>
           </div>
           <button
             onClick={handleSubmit}
-            className='w-1/2 h-10 rounded-md mt-10 bg-fuchsia-500'
+            className='w-1/2 h-10 rounded-md mt-10 bg-fuchsia-500 text-black'
           >
             Add
           </button>
@@ -141,8 +156,15 @@ export default function OwnerDash() {
           <p className='text-3xl mb-10'>Find a listing</p>
           <div className='w-full'>
             <label className='text-2xl'>id</label>
-            <input type='number' className='w-full h-25 text-xl' />
+            <input type='number' ref={idRef} className='text-black w-full h-25 text-xl' defaultValue={0} />
+            <button
+              onClick={handleIdChange}
+              className='w-full h-10 rounded-md mt-10 bg-fuchsia-500 text-black'
+            >
+              Find
+            </button>
           </div>
+          {listing && <Card {...listing} />}
         </div>
       </div>
     </>

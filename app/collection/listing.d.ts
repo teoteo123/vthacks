@@ -1,10 +1,15 @@
 export interface Listing {
-	owner: string,
-	propertyName: string,
-	propertyDescription: string,
-	address: string,
-	images: string[],
+	owner: string
+	propertyInfo: PropertyInfo
+	price: Number
+	images: string[]
 	rentDates: number[][]
+}
+
+interface PropertyInfo {
+	name: string
+	description: string
+	location: string
 }
 
 export interface Images {
