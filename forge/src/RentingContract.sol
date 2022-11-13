@@ -45,7 +45,7 @@ contract RentingContract {
     ) public returns (uint256 id) {
         Listing storage newListing = listings.push();
         newListing.owner = msg.sender;
-        newListing.propertyInfo = PropertyInfo("a", "b", "c");
+        newListing.propertyInfo = _propertyInfo;
         newListing.price = _price;
 
         emit LogListingAdded(
