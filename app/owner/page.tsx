@@ -5,18 +5,32 @@ import Button from 'react-bootstrap/Button'
 
 import { useRef } from 'react'
 import Head from 'next/head'
+import { addListing } from '../collection/interactions'
 
 export default function OwnerDash() {
-  const nameRef = useRef()
-  const descriptionRef = useRef()
-  const locationRef = useRef()
-  const image1Ref = useRef()
-  const image2Ref = useRef()
-  const image3Ref = useRef()
-  const priceRef = useRef()
+  const nameRef = useRef<HTMLInputElement>(null)
+  const descriptionRef = useRef<HTMLInputElement>(null)
+  const locationRef = useRef<HTMLInputElement>(null)
+  const image1Ref = useRef<HTMLInputElement>(null)
+  const image2Ref = useRef<HTMLInputElement>(null)
+  const image3Ref = useRef<HTMLInputElement>(null)
+  const priceRef = useRef<HTMLInputElement>(null)
 
   const handleSubmit = () => {
-    
+    const data = {
+      propertyInfo: {
+        name: nameRef.current?.value.trim(),
+        description: descriptionRef.current?.value.trim(),
+        location: locationRef.current?.value.trim(),
+      },
+      images: [
+        image1Ref.current?.value.trim(),
+        image2Ref.current?.value.trim(),
+        image3Ref.current?.value.trim(),
+      ],
+      price: priceRef.current?.value,
+    }
+    addListing(data)
   }
 
   return (
@@ -33,7 +47,7 @@ export default function OwnerDash() {
               type='text'
               className='shadow-sm border-gray-300 rounded-lg m-2 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400'
               placeholder='Enter some text...'
-              ref={nameRef as any}
+              ref={nameRef}
             ></input>
           </div>
           <div>
