@@ -134,26 +134,6 @@ contract RentingContract {
         listings[_id].pendingApplications.pop();
     }
 
-    function checkApplication(
-        uint256 _id,
-        uint256 _start,
-        uint256 _end
-    ) private {
-        uint256 numApplications = listings[_id].pendingApplications.length;
-        for (uint256 i = 0; i < numApplications; i++) {
-            uint256 _currentStart = listings[_id].pendingApplications[i].start;
-            uint256 _currentEnd = listings[_id].pendingApplications[i].end;
-            for (uint256 day = _currentStart; day <= _currentEnd; day++) {
-                if (_start <= day && day <= _end) {
-                    remove(i, _id);
-                    i--;
-                    numApplications--;
-                    break;
-                }
-            }
-        }
-    }
-
     function approveApplication(uint32 _id, uint32 _applicationId)
         public
         listingExists(_id)
@@ -176,8 +156,6 @@ contract RentingContract {
         emit LogApplicationApproved(_renter, _id, _start, _end);
 
         remove(_applicationId, _id);
-
-        checkApplication(_id, _start, _end);
     }
 
     function getListings() public view returns (Listing[] memory) {
