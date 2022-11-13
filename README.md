@@ -35,3 +35,7 @@ Ultimately deploying a smart contract and being able to interact with it from th
 - Displaying the listings on a map
 - Handling payments through the smart contract
 - Adding more functionality to the smart contract, such as escrow, dispute resolution, etc.
+
+## A section where we talk badly about Hedera
+
+Over the weekend, Hedera 
