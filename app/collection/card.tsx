@@ -57,9 +57,9 @@ export default function Card(props: any) {
 	}
 
   return (
-    <div className='flex flex-col items-center space-y-10 w-[579px] h-[982px] bg-[#f4f8fa]'>
+    <div className='flex flex-col items-center space-y-10 w-[579px] h-[982px] bg- text-white'>
       <div id='image-address' className='space-y-10'>
-        <p className='font-mono'>{address || '6969 Cool Street'}</p>
+        <p className='font-sans'>{address || '123 Jane Street'}</p>
         <div className=' flex flex-row h-[339px] max-w-[542px] overflow-x-scroll overflow-y-clip'>
           {/* map props.images to images */}
           <Image
@@ -92,7 +92,7 @@ export default function Card(props: any) {
             show={toShow}
             setShow={handleToClose}
           />
-          <button className='w-[542px] h-[74px] border-0 bg-green-500 rounded-md'>Apply</button>
+          <button className='w-[542px] h-[74px] border-0 bg-sky-500'>Apply</button>
         </div>
       </div>
     </div>
