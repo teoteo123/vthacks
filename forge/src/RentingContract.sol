@@ -43,10 +43,9 @@ contract RentingContract {
         string[] memory _images,
         uint128 _price
     ) public returns (uint256 id) {
-        Listing storage newListing = listings[listings.length];
+        Listing storage newListing = listings.push();
         newListing.owner = msg.sender;
-        newListing.propertyInfo = _propertyInfo;
-        newListing.images = _images;
+        newListing.propertyInfo = PropertyInfo("a", "b", "c");
         newListing.price = _price;
 
         emit LogListingAdded(
