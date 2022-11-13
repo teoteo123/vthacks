@@ -49,7 +49,7 @@ export default function Card(props: any) {
       <div id='image-address' className='space-y-10'>
         <p className='font-mono'>{address || '6969 Cool Street'}</p>
         <div className=' flex flex-row h-[339px] max-w-[542px] overflow-x-scroll overflow-y-clip'>
-					{/* map props.images to images */}
+          {/* map props.images to images */}
           <Image
             className='min-w-[542px]'
             alt='no load'
@@ -66,6 +66,9 @@ export default function Card(props: any) {
           />
         </div>
         <div id='bottom-form' className='space-y-5'>
+          <p>from</p>
+          <Datepicker options={options} onChange={handleChange} show={show} setShow={handleClose} />
+          <p>to</p>
           <Datepicker options={options} onChange={handleChange} show={show} setShow={handleClose} />
           <button className='w-[542px] h-[74px] border-0 bg-green-500 rounded-md'>Apply</button>
         </div>
