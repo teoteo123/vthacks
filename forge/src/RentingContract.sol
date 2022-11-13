@@ -47,6 +47,7 @@ contract RentingContract {
         newListing.owner = msg.sender;
         newListing.propertyInfo = _propertyInfo;
         newListing.price = _price;
+        newListing.images = _images;
 
         emit LogListingAdded(
             msg.sender,
